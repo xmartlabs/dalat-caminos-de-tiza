@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Work+Sans:wght@400;500&display=swap');
+
+:root {
+  --brand: #775e57;
+  --brand-hover: #5e4a44;
+  --brand-subtle: #f5ede9;
+  --surface: #ffffff;
+  --surface-bold: #f5f4f2;
+  --surface-bolder: #e8e6e3;
+  --text: #0a0a09;
+  --text-subtle: #5c5a57;
+  --text-inverse: #ffffff;
+  --border: #83817d;
+  --radius: 8px;
+  --margin: 120px;
+
+  --h1: 64px;
+  --h2: 48px;
+  --h6: 24px;
+  --body-l: 20px;
+  --body-m: 16px;
+  --body-s: 14px;
+  --body-xs: 12px;
+  --accent: 32px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-size: var(--body-m);
+  color: var(--text);
+  background: var(--surface);
+  line-height: 1.7;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+.accent { font-family: 'Caveat', cursive; font-size: var(--accent); line-height: 1.3; color: var(--brand); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand);
+  color: var(--text-inverse);
+  border: 2px solid var(--brand);
+  border-radius: var(--radius);
+  padding: 14px 28px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: var(--body-l);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: var(--brand-hover); border-color: var(--brand-hover); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+  border-radius: var(--radius);
+  padding: 14px 28px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: var(--body-l);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.btn-secondary:hover { background: var(--brand-subtle); }
+
+@media (max-width: 768px) {
+  :root { --margin: 24px; --h1: 40px; --h2: 32px; --accent: 24px; }
+}
