@@ -1,0 +1,274 @@
+---
+// Design system catalog — solo dev
+import TextField from '../components/TextField.astro';
+import Button from '../components/Button.astro';
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Components — Caminos de Tiza</title>
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <style>
+    body { background: #f5f4f2; padding: 48px 40px; }
+    h1 { font-size: 32px; font-weight: 500; margin-bottom: 48px; color: #0a0a09; }
+    h2 { font-size: 20px; font-weight: 500; margin: 48px 0 24px; color: #0a0a09; border-bottom: 1px solid #e8e6e3; padding-bottom: 12px; }
+    h3 { font-size: 13px; font-weight: 500; color: #5c5a57; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .section { background: #fff; border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+    .row { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .col { display: flex; flex-direction: column; gap: 8px; }
+    :global(.col .field) { flex: none; }
+    .label { font-size: 11px; color: #83817d; margin-top: 4px; text-align: center; }
+
+    /* forzar estados estáticos para el catálogo */
+    .state-hover input, .state-hover textarea { border-color: var(--border-neutral-hover) !important; }
+    .state-focus input, .state-focus textarea {
+      border-color: var(--border-brand) !important;
+      box-shadow: 0 0 0 1px var(--border-focus-subtle), 0 0 0 3px var(--border-focus-default) !important;
+      outline: none;
+    }
+    .state-active input, .state-active textarea { background: var(--bg-brand-subtle-pressed) !important; }
+
+    .btn-state-hover.btn-primary { background: var(--bg-brand-bold-hover) !important; border-color: var(--border-brand-hover) !important; }
+    .btn-state-hover.btn-secondary { background: var(--bg-brand-subtle) !important; }
+    .btn-state-hover.btn-ghost { background: var(--bg-brand-subtle) !important; }
+
+    .btn-state-focus.btn-primary { border-color: var(--border-focus-subtle) !important; box-shadow: 0 0 0 2px var(--border-focus-default) !important; outline: none; }
+    .btn-state-focus.btn-secondary { border-color: var(--border-focus-subtle) !important; box-shadow: 0 0 0 2px var(--border-focus-default) !important; outline: none; }
+    .btn-state-focus.btn-ghost { border-color: var(--border-focus-subtle) !important; box-shadow: 0 0 0 2px var(--border-focus-default) !important; outline: none; }
+
+    .btn-state-active.btn-primary { background: var(--bg-brand-bold-pressed) !important; border-color: var(--bg-brand-bold-pressed) !important; }
+    .btn-state-active.btn-secondary { background: var(--bg-brand-subtle-pressed) !important; }
+    .btn-state-active.btn-ghost { background: var(--bg-brand-subtle-pressed) !important; }
+
+    .tokens-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .token-swatch { display: flex; align-items: center; gap: 10px; }
+    .swatch { width: 32px; height: 32px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.08); flex-shrink: 0; }
+    .token-name { font-size: 12px; color: #0a0a09; font-family: monospace; }
+    .token-value { font-size: 11px; color: #5c5a57; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>Design System — Caminos de Tiza</h1>
+
+  <!-- TOKENS -->
+  <h2>Tokens</h2>
+
+  <h3 style="margin-top:0">Primitives — Brown</h3>
+  <div class="section">
+    <div class="tokens-grid">
+      {(['10','20','30','40','50','60','70','80','90','100'] as const).map((n) => (
+        <div class="token-swatch">
+          <div class="swatch" style={`background:var(--brown-${n})`}></div>
+          <div>
+            <div class="token-name">--brown-{n}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Primitives — Neutral</h3>
+  <div class="section">
+    <div class="tokens-grid">
+      {(['10','20','30','40','50','60','70','80','90','100'] as const).map((n) => (
+        <div class="token-swatch">
+          <div class="swatch" style={`background:var(--neutral-${n})`}></div>
+          <div>
+            <div class="token-name">--neutral-{n}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Primitives — Red</h3>
+  <div class="section">
+    <div class="tokens-grid">
+      {(['10','20','30','40','50','60','70','80','90','100'] as const).map((n) => (
+        <div class="token-swatch">
+          <div class="swatch" style={`background:var(--red-${n})`}></div>
+          <div>
+            <div class="token-name">--red-{n}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Color — Foreground</h3>
+  <div class="section">
+    <div class="tokens-grid">
+      {[
+        '--fg-neutral-default',
+        '--fg-neutral-subtle',
+        '--fg-inverse',
+        '--fg-brand',
+        '--fg-danger',
+        '--fg-disabled',
+      ].map((token) => (
+        <div class="token-swatch">
+          <div class="swatch" style={`background:var(${token})`}></div>
+          <div><div class="token-name">{token}</div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Color — Background</h3>
+  <div class="section">
+    <div class="tokens-grid">
+      {[
+        '--bg-surface-default',
+        '--bg-surface-bold',
+        '--bg-surface-bolder',
+        '--bg-brand-bold',
+        '--bg-brand-bold-hover',
+        '--bg-brand-bold-pressed',
+        '--bg-brand-subtle',
+        '--bg-brand-subtle-pressed',
+        '--bg-disabled',
+      ].map((token) => (
+        <div class="token-swatch">
+          <div class="swatch" style={`background:var(${token})`}></div>
+          <div><div class="token-name">{token}</div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Color — Border</h3>
+  <div class="section">
+    <div class="tokens-grid">
+      {[
+        '--border-neutral',
+        '--border-neutral-hover',
+        '--border-brand',
+        '--border-brand-hover',
+        '--border-danger',
+        '--border-focus-default',
+        '--border-focus-subtle',
+      ].map((token) => (
+        <div class="token-swatch">
+          <div class="swatch" style={`background:var(${token})`}></div>
+          <div><div class="token-name">{token}</div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Spacing & Radius</h3>
+  <div class="section">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      {[
+        ['--space-0','0px'],['--space-1','4px'],['--space-2','8px'],['--space-3','12px'],
+        ['--space-4','16px'],['--space-5','20px'],['--space-6','24px'],['--space-8','32px'],
+        ['--space-10','40px'],['--space-12','48px'],['--space-16','64px'],['--space-20','80px'],['--space-24','96px'],
+      ].map(([token, val]) => (
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style={`width:var(${token});height:16px;background:var(--bg-brand-bold);border-radius:2px;min-width:2px;flex-shrink:0`}></div>
+          <span class="token-name">{token}</span>
+          <span class="token-value">{val}</span>
+        </div>
+      ))}
+    </div>
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:16px">
+      {[
+        ['--radius-sm','4px'],['--radius-md','8px'],['--radius-lg','12px'],
+        ['--radius-xl','20px'],['--radius-pill','999px'],
+      ].map(([token, val]) => (
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div style={`width:48px;height:48px;background:var(--bg-brand-bold);border-radius:var(${token})`}></div>
+          <span class="token-name" style="text-align:center">{token}</span>
+          <span class="token-value">{val}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Typography</h3>
+  <div class="section">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      {[
+        ['--font-h1-size','64px'],['--font-h2-size','48px'],['--font-h3-size','40px'],
+        ['--font-h4-size','32px'],['--font-h5-size','28px'],['--font-h6-size','24px'],
+        ['--font-accent-size','32px'],
+        ['--font-body-l-size','20px'],['--font-body-m-size','16px'],
+        ['--font-body-s-size','14px'],['--font-body-xs-size','12px'],
+      ].map(([token, val]) => (
+        <div style="display:flex;align-items:baseline;gap:12px">
+          <span style={`font-size:var(${token});line-height:1;flex-shrink:0;color:var(--fg-neutral-default)`}>Aa</span>
+          <span class="token-name">{token}</span>
+          <span class="token-value">{val}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3>Shadows</h3>
+  <div class="section">
+    <div style="display:flex;flex-wrap:wrap;gap:24px">
+      {[
+        ['--shadow-sm','0 1px 2px 0 rgba(22,15,13,0.06)'],
+        ['--shadow-md','0 4px 12px 0 rgba(22,15,13,0.08)'],
+        ['--shadow-lg','0 12px 32px 0 rgba(22,15,13,0.12)'],
+      ].map(([token, val]) => (
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+          <div style={`width:80px;height:80px;background:var(--bg-surface-default);border-radius:8px;box-shadow:var(${token})`}></div>
+          <span class="token-name">{token}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- TEXT FIELDS -->
+  <h2>TextField</h2>
+
+  <div class="section">
+    <div class="row">
+      <div class="col">
+        <TextField label="Default" name="f-default" placeholder="Placeholder" />
+        <div class="label">default</div>
+      </div>
+      <div class="col">
+        <TextField label="Deshabilitado" name="f-dis" placeholder="Placeholder" disabled />
+        <div class="label">disabled</div>
+      </div>
+      <div class="col">
+        <TextField label="Error" name="f-err" placeholder="Placeholder" error="Este campo es obligatorio." required />
+        <div class="label">error</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <h2>Button</h2>
+
+  {(['primary', 'secondary', 'ghost'] as const).map((variant) => (
+    <div class="section">
+      <h3>{variant === 'primary' ? 'Fill' : variant === 'secondary' ? 'Stroke' : 'Ghost'} — {variant}</h3>
+      <div class="row" style="align-items:center">
+        <div class="col">
+          <Button variant={variant} size="sm">Botón Sm</Button>
+          <div class="label">sm</div>
+        </div>
+        <div class="col">
+          <Button variant={variant} size="md">Botón Md</Button>
+          <div class="label">md</div>
+        </div>
+        <div class="col">
+          <Button variant={variant} size="lg">Botón Lg</Button>
+          <div class="label">lg</div>
+        </div>
+        <div class="col">
+          <Button variant={variant} size="md" disabled>Disabled</Button>
+          <div class="label">disabled</div>
+        </div>
+      </div>
+    </div>
+  ))}
+
+</body>
+</html>

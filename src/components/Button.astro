@@ -1,0 +1,162 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'nav' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit';
+  target?: string;
+  rel?: string;
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size,
+  href,
+  type = 'button',
+  target,
+  rel,
+  disabled = false,
+  class: extraClass,
+} = Astro.props;
+
+// size defaults: nav→sm, primary/secondary→lg, ghost→md
+const resolvedSize = size ?? (variant === 'nav' ? 'sm' : variant === 'ghost' ? 'md' : 'lg');
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  type={!href ? type : undefined}
+  target={target}
+  rel={rel}
+  disabled={!href && disabled ? true : undefined}
+  aria-disabled={href && disabled ? 'true' : undefined}
+  class:list={[`btn-${variant}`, `btn-${resolvedSize}`, extraClass, { 'btn-disabled': disabled }]}
+>
+  <slot />
+</Tag>
+
+<style>
+  /* ── shared base ── */
+  :is(.btn-primary, .btn-secondary, .btn-nav, .btn-ghost) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    border-radius: var(--radius-md);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+    text-decoration: none;
+    border: 2px solid transparent;
+  }
+
+  /* ── sizes ── */
+  .btn-sm { padding: 8px 14px;  font-size: var(--font-body-s-size); }
+  .btn-md { padding: 11px 20px; font-size: var(--font-body-m-size); }
+  .btn-lg { padding: 14px 28px; font-size: var(--font-body-l-size); }
+
+  /* ── Fill (primary) ── */
+  .btn-primary {
+    background: var(--bg-brand-bold);
+    color: var(--fg-inverse);
+    border-color: var(--border-brand);
+  }
+  .btn-primary:not(.btn-disabled):hover {
+    background: var(--bg-brand-bold-hover);
+    border-color: var(--border-brand-hover);
+  }
+  .btn-primary:not(.btn-disabled):focus-visible {
+    background: var(--bg-brand-bold);
+    border-color: var(--border-focus-subtle);
+    box-shadow: 0 0 0 2px var(--border-focus-default);
+    outline: none;
+  }
+  .btn-primary:not(.btn-disabled):active {
+    background: var(--bg-brand-bold-pressed);
+    border-color: var(--bg-brand-bold-pressed);
+  }
+  .btn-primary.btn-disabled {
+    background: var(--bg-disabled);
+    border-color: var(--bg-disabled);
+    color: var(--fg-disabled);
+    cursor: not-allowed;
+  }
+
+  /* ── Stroke (secondary) ── */
+  .btn-secondary {
+    background: transparent;
+    color: var(--fg-brand);
+    border-color: var(--border-brand);
+  }
+  .btn-secondary:not(.btn-disabled):hover {
+    background: var(--bg-brand-subtle);
+  }
+  .btn-secondary:not(.btn-disabled):focus-visible {
+    border-color: var(--border-focus-subtle);
+    box-shadow: 0 0 0 2px var(--border-focus-default);
+    outline: none;
+  }
+  .btn-secondary:not(.btn-disabled):active {
+    background: var(--bg-brand-subtle-pressed);
+    border-color: transparent;
+  }
+  .btn-secondary.btn-disabled {
+    border-color: var(--border-neutral);
+    color: var(--fg-disabled);
+    cursor: not-allowed;
+  }
+
+  /* ── Ghost (nav + ghost) ── */
+  .btn-nav,
+  .btn-ghost {
+    background: transparent;
+    color: var(--fg-brand);
+    border-color: transparent;
+  }
+  /* nav kept as fill-sm for navbar usage */
+  .btn-nav {
+    background: var(--bg-brand-bold);
+    color: var(--fg-inverse);
+    border-color: var(--border-brand);
+  }
+  .btn-nav:not(.btn-disabled):hover {
+    background: var(--bg-brand-bold-hover);
+    border-color: var(--border-brand-hover);
+  }
+  .btn-nav:not(.btn-disabled):focus-visible {
+    border-color: var(--border-focus-subtle);
+    box-shadow: 0 0 0 2px var(--border-focus-default);
+    outline: none;
+  }
+  .btn-nav:not(.btn-disabled):active {
+    background: var(--bg-brand-bold-pressed);
+    border-color: var(--bg-brand-bold-pressed);
+  }
+  .btn-nav.btn-disabled {
+    background: var(--bg-disabled);
+    border-color: var(--bg-disabled);
+    color: var(--fg-disabled);
+    cursor: not-allowed;
+  }
+
+  .btn-ghost:not(.btn-disabled):hover {
+    background: var(--bg-brand-subtle);
+  }
+  .btn-ghost:not(.btn-disabled):focus-visible {
+    border-color: var(--border-focus-subtle);
+    box-shadow: 0 0 0 2px var(--border-focus-default);
+    outline: none;
+  }
+  .btn-ghost:not(.btn-disabled):active {
+    background: var(--bg-brand-subtle-pressed);
+  }
+  .btn-ghost.btn-disabled {
+    color: var(--fg-disabled);
+    cursor: not-allowed;
+  }
+</style>

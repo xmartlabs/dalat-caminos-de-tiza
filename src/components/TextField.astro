@@ -1,0 +1,175 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  type?: 'text' | 'email' | 'tel';
+  placeholder?: string;
+  required?: boolean;
+  noOnlyNumbers?: boolean;
+  textarea?: boolean;
+  rows?: number;
+  disabled?: boolean;
+  error?: string;
+}
+
+const {
+  label,
+  name,
+  type = 'text',
+  placeholder = '',
+  required = false,
+  noOnlyNumbers = false,
+  textarea = false,
+  rows = 5,
+  disabled = false,
+  error = '',
+} = Astro.props;
+---
+
+<label class:list={['field', { 'field--error': !!error, 'field--disabled': disabled }]}>
+  <span class="field-label">
+    {label}
+    {required && <span class="required-mark" aria-hidden="true">*</span>}
+  </span>
+  {textarea ? (
+    <textarea
+      name={name}
+      placeholder={placeholder}
+      rows={rows}
+      required={required || undefined}
+      disabled={disabled || undefined}
+      class:list={[{ invalid: !!error }]}
+    ></textarea>
+  ) : (
+    <input
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      required={required || undefined}
+      disabled={disabled || undefined}
+      pattern={noOnlyNumbers ? '.*\\D.*' : undefined}
+      title={noOnlyNumbers ? 'El nombre no puede ser solo números' : undefined}
+      class:list={[{ invalid: !!error }]}
+    />
+  )}
+  <span class="field-error" hidden={!error}>
+    {error && (
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <circle cx="6" cy="6" r="5.5" stroke="currentColor"/>
+        <path d="M6 3.5V6.5" stroke="currentColor" stroke-linecap="round"/>
+        <circle cx="6" cy="8.5" r="0.5" fill="currentColor"/>
+      </svg>
+    )}
+    {error}
+  </span>
+</label>
+
+<style>
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1 0 200px;
+  }
+
+  .field-label {
+    font-size: var(--font-body-s-size);
+    font-weight: 500;
+    color: var(--fg-neutral-default);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .field--error .field-label {
+    color: var(--fg-danger);
+  }
+
+  .required-mark {
+    color: var(--fg-brand);
+  }
+
+  .field--error .required-mark {
+    color: var(--fg-danger);
+  }
+
+  .field input,
+  .field textarea {
+    background: var(--bg-surface-default);
+    border: 1px solid var(--border-neutral);
+    border-radius: var(--radius-md);
+    padding: 11px 14px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: var(--font-body-m-size);
+    color: var(--fg-neutral-default);
+    width: 100%;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--fg-neutral-subtle);
+  }
+
+  /* hover */
+  .field input:not(:disabled):hover,
+  .field textarea:not(:disabled):hover {
+    border-color: var(--border-neutral-hover);
+  }
+
+  /* focus */
+  .field input:not(:disabled):focus,
+  .field textarea:not(:disabled):focus {
+    outline: none;
+    border-color: var(--border-brand);
+    box-shadow: 0 0 0 1px var(--border-focus-subtle), 0 0 0 3px var(--border-focus-default);
+  }
+
+  /* active / filled visual handled via pseudo-class — browsers don't expose :active on inputs */
+
+  /* disabled */
+  .field input:disabled,
+  .field textarea:disabled {
+    background: var(--bg-disabled);
+    color: var(--fg-disabled);
+    border-color: var(--border-neutral);
+    cursor: not-allowed;
+  }
+
+  .field--disabled .field-label {
+    color: var(--fg-disabled);
+  }
+
+  .field--disabled .required-mark {
+    color: var(--fg-disabled);
+  }
+
+  /* error */
+  .field input.invalid,
+  .field textarea.invalid {
+    border-color: var(--border-danger);
+  }
+
+  .field input.invalid:focus,
+  .field textarea.invalid:focus {
+    box-shadow: 0 0 0 1px var(--border-focus-subtle), 0 0 0 3px var(--border-danger);
+  }
+
+  .field textarea {
+    resize: vertical;
+  }
+
+  .field-error {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-body-xs-size);
+    line-height: 1.6;
+    color: var(--fg-danger);
+    margin-top: 2px;
+  }
+
+  .field-error svg {
+    flex-shrink: 0;
+  }
+</style>
