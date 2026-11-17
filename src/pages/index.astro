@@ -34,17 +34,7 @@ import Button from '../components/Button.astro';
     </button>
   </header>
 
-  <div id="mobile-menu" class="mobile-menu" hidden aria-modal="true" role="dialog" aria-label="Menú de navegación">
-    <div class="mobile-menu__header">
-      <a href="/" class="nav__logo" aria-label="Caminos de Tiza">
-        <img src="/assets/logo.svg" alt="Caminos de Tiza" height="42" />
-      </a>
-      <button class="mobile-menu__close" aria-label="Cerrar menú">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
+  <div id="mobile-menu" class="mobile-menu" hidden aria-label="Menú de navegación">
     <nav class="mobile-menu__links">
       <a href="#quienes-somos">Quiénes somos</a>
       <a href="#que-hacemos">Qué hacemos</a>
@@ -324,51 +314,64 @@ import Button from '../components/Button.astro';
   transition: background 0.15s;
 }
 .nav__links a:hover { background: var(--bg-brand-subtle); }
-.nav__burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: var(--space-2); }
-.nav__burger span { display: block; width: 24px; height: 2px; background: var(--bg-brand-bold); border-radius: 2px; }
-
-.mobile-menu {
+/* Burger → X */
+.nav__burger {
   display: none;
   flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 120px;
-  right: 0;
-  bottom: 0;
-  background: var(--bg-surface-default);
-  z-index: 999;
-  box-shadow: -4px 0 40px rgba(22, 15, 13, 0.14);
-  overflow-y: auto;
-}
-.mobile-menu__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px var(--space-6);
-  border-bottom: 1px solid var(--bg-surface-bold);
-  min-height: 70px;
-}
-.mobile-menu__close {
+  justify-content: center;
+  gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--fg-brand);
   padding: var(--space-2);
-  display: flex;
-  align-items: center;
-  border-radius: var(--radius-md);
-  transition: background 0.15s;
+  width: 40px;
+  height: 40px;
+  position: relative;
 }
-.mobile-menu__close:hover { background: var(--bg-brand-subtle); }
+.nav__burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--bg-brand-bold);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu dropdown */
+.mobile-menu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: var(--bg-surface-default);
+  z-index: 99;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.mobile-menu:not([hidden]) {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-menu[hidden] { display: flex; }
+
 .mobile-menu__links {
   display: flex;
   flex-direction: column;
-  padding: var(--space-6);
-  gap: var(--space-2);
-  flex: 1;
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  gap: var(--space-1);
 }
 .mobile-menu__links a {
-  padding: var(--space-4) var(--space-2);
+  padding: var(--space-3) var(--space-2);
   color: var(--fg-brand);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-title-s-size);
@@ -377,10 +380,9 @@ import Button from '../components/Button.astro';
 }
 .mobile-menu__links a:hover { background: var(--bg-brand-subtle); }
 .mobile-menu__footer {
-  padding: var(--space-6);
-  border-top: 1px solid var(--bg-surface-bold);
+  padding: var(--space-4) var(--space-6) var(--space-6);
 }
-:global(.mobile-menu__footer > a, .mobile-menu__footer > button) { width: 100%; justify-content: center; }
+:global(.mobile-menu__footer > a, .mobile-menu__footer > button) { width: auto; }
 
 /* HERO */
 .hero {
@@ -660,10 +662,6 @@ import Button from '../components/Button.astro';
 @media (max-width: 1080px) {
   .nav__links { display: none; }
   .nav__burger { display: flex; }
-  .mobile-menu:not([hidden]) { display: flex; }
-}
-@media (max-width: 480px) {
-  .mobile-menu { left: 60px; }
 }
 
 @media (max-width: 768px) {
@@ -684,23 +682,19 @@ import Button from '../components/Button.astro';
 <script>
   const burger = document.querySelector('.nav__burger') as HTMLButtonElement;
   const menu = document.getElementById('mobile-menu') as HTMLDivElement;
-  const closeBtn = menu?.querySelector('.mobile-menu__close') as HTMLButtonElement;
 
   function openMenu() {
     menu.removeAttribute('hidden');
     burger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
   }
   function closeMenu() {
     menu.setAttribute('hidden', '');
     burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
   }
 
   burger?.addEventListener('click', () => {
     if (menu.hasAttribute('hidden')) openMenu(); else closeMenu();
   });
-  closeBtn?.addEventListener('click', closeMenu);
   menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
   const form = document.querySelector('.contact-form');
