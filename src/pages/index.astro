@@ -646,8 +646,8 @@ import Button from '../components/Button.astro';
   gap: var(--space-4);
 }
 .footer p { font-size: var(--font-body-s-size); opacity: 0.92; }
-.footer__social { display: flex; gap: var(--space-1); }
-.footer__social a { padding: 8px 14px; border-radius: var(--radius-md); transition: background 0.15s; }
+.footer__social { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.footer__social a { padding: 8px; border-radius: var(--radius-md); transition: background 0.15s; flex-shrink: 0; }
 .footer__social a:hover { background: rgba(255,255,255,0.1); }
 
 /* RESPONSIVE */
