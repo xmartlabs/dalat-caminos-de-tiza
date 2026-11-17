@@ -142,6 +142,7 @@ body {
   color: var(--fg-neutral-default);
   background: var(--bg-surface-default);
   line-height: 1.7;
+  overflow-x: hidden;
 }
 
 img { display: block; max-width: 100%; }
