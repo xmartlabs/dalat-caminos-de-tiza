@@ -193,12 +193,12 @@ import Button from '../components/Button.astro';
   <div class="section">
     <div style="display:flex;flex-direction:column;gap:20px">
       {[
-        ['--font-h1-size','64px','Title/XXL — Caminos que transforman vidas'],
-        ['--font-h2-size','48px','Title/XL — Una escuela que camina'],
-        ['--font-h3-size','40px','Title/L — Educación inclusiva'],
-        ['--font-h4-size','32px','Title/M — Apoyo escolar'],
-        ['--font-h5-size','28px','Title/S — Estimulación temprana'],
-        ['--font-h6-size','24px','Title/XS — Julio Manuel Pereyra'],
+        ['--font-title-xxl-size','64px','Title/XXL — Caminos que transforman vidas'],
+        ['--font-title-xl-size','48px','Title/XL — Una escuela que camina'],
+        ['--font-title-l-size','40px','Title/L — Educación inclusiva'],
+        ['--font-title-m-size','32px','Title/M — Apoyo escolar'],
+        ['--font-title-s-size','28px','Title/S — Estimulación temprana'],
+        ['--font-title-xs-size','24px','Title/XS — Julio Manuel Pereyra'],
       ].map(([token, val, example]) => (
         <div style="display:flex;flex-direction:column;gap:4px;border-bottom:1px solid var(--bg-surface-bold);padding-bottom:16px">
           <span style={`font-size:var(${token});line-height:1.2;color:var(--fg-neutral-default);font-family:'Work Sans',sans-serif;font-weight:var(--font-weight-medium)`}>{example}</span>
@@ -246,12 +246,12 @@ import Button from '../components/Button.astro';
   <div class="section">
     <div style="display:flex;flex-direction:column;gap:20px">
       {[
-        ['40px','Title/XXL — Caminos que transforman vidas','--font-h1-size'],
-        ['32px','Title/XL — Una escuela que camina','--font-h2-size'],
-        ['24px','Title/L — Educación inclusiva','--font-h3-size'],
-        ['20px','Title/M — Apoyo escolar','--font-h4-size'],
-        ['18px','Title/S — Estimulación temprana','--font-h5-size'],
-        ['16px','Title/XS — Julio Manuel Pereyra','--font-h6-size'],
+        ['40px','Title/XXL — Caminos que transforman vidas','--font-title-xxl-size'],
+        ['32px','Title/XL — Una escuela que camina','--font-title-xl-size'],
+        ['24px','Title/L — Educación inclusiva','--font-title-l-size'],
+        ['20px','Title/M — Apoyo escolar','--font-title-m-size'],
+        ['18px','Title/S — Estimulación temprana','--font-title-s-size'],
+        ['16px','Title/XS — Julio Manuel Pereyra','--font-title-xs-size'],
       ].map(([val, example, token]) => (
         <div style="display:flex;flex-direction:column;gap:4px;border-bottom:1px solid var(--bg-surface-bold);padding-bottom:16px">
           <span style={`font-size:${val};line-height:1.2;color:var(--fg-neutral-default);font-family:'Work Sans',sans-serif;font-weight:var(--font-weight-medium)`}>{example}</span>
