@@ -595,7 +595,7 @@ import Button from '../components/Button.astro';
   gap: var(--space-12);
   align-items: flex-start;
 }
-.contact__donation { flex: 1 0 300px; display: flex; flex-direction: column; gap: 60px; }
+.contact__donation { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 60px; }
 .contact__donation > div { display: flex; flex-direction: column; gap: var(--space-4); }
 .contact__donation h2 { font-size: var(--font-title-xl-size); font-weight: var(--font-weight-medium); line-height: 1.15; }
 .transfer-info { font-size: var(--font-body-m-size); line-height: 1.7; display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
@@ -616,7 +616,8 @@ import Button from '../components/Button.astro';
 .quote cite { font-size: var(--font-body-s-size); color: var(--fg-neutral-subtle); font-style: normal; }
 
 .contact__form-wrapper {
-  flex: 1 0 300px;
+  flex: 1 1 300px;
+  min-width: 0;
   background: var(--bg-surface-default);
   border: 1px solid var(--border-neutral);
   border-radius: 14px;
@@ -630,7 +631,7 @@ import Button from '../components/Button.astro';
 .form-row { display: flex; flex-wrap: wrap; gap: var(--space-5); }
 :global(.contact-form > .field) { flex: none; }
 .form-submit { align-self: flex-start; }
-:global(.btn-mp) { align-self: flex-start; }
+:global(.btn-mp) { align-self: flex-start; max-width: 100%; }
 .mp-icon { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
 
 /* FOOTER */
