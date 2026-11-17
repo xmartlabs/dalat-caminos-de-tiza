@@ -317,7 +317,7 @@ import Button from '../components/Button.astro';
 .nav__links a {
   padding: 8px 14px;
   border-radius: var(--radius-md);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: var(--font-body-s-size);
   color: var(--fg-brand);
   transition: background 0.15s;
@@ -369,7 +369,7 @@ import Button from '../components/Button.astro';
 .mobile-menu__links a {
   padding: var(--space-4) var(--space-2);
   color: var(--fg-brand);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: var(--font-title-s-size);
   border-radius: var(--radius-md);
   transition: background 0.15s;
@@ -408,7 +408,7 @@ import Button from '../components/Button.astro';
   flex-direction: column;
   gap: var(--space-5);
 }
-.hero h1 { font-size: var(--font-title-xxl-size); font-weight: 500; line-height: 1.1; }
+.hero h1 { font-size: var(--font-title-xxl-size); font-weight: var(--font-weight-medium); line-height: 1.1; }
 .hero__body { font-size: var(--font-body-l-size); line-height: 1.6; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
 
@@ -425,7 +425,7 @@ import Button from '../components/Button.astro';
 }
 .about__map { width: 162px; height: auto; flex-shrink: 0; }
 .about__text { display: flex; flex-direction: column; gap: var(--space-6); }
-.about__text h2 { font-size: var(--font-title-xl-size); font-weight: 500; line-height: 1.15; }
+.about__text h2 { font-size: var(--font-title-xl-size); font-weight: var(--font-weight-medium); line-height: 1.15; }
 
 .about__founder {
   background: var(--bg-surface-bolder);
@@ -463,8 +463,8 @@ import Button from '../components/Button.astro';
   object-fit: cover;
 }
 .founder__info { display: flex; flex-direction: column; gap: var(--space-2); }
-.founder__info h3 { font-size: var(--font-title-xs-size); font-weight: 500; line-height: 1.35; }
-.founder__role { color: var(--fg-brand); font-weight: 500; }
+.founder__info h3 { font-size: var(--font-title-xs-size); font-weight: var(--font-weight-medium); line-height: 1.35; }
+.founder__role { color: var(--fg-brand); font-weight: var(--font-weight-medium); }
 
 /* SERVICES */
 .services {
@@ -475,7 +475,7 @@ import Button from '../components/Button.astro';
   gap: var(--space-12);
 }
 .services__header { display: flex; flex-direction: column; gap: var(--space-4); }
-.services__header h2 { font-size: var(--font-title-xl-size); font-weight: 500; line-height: 1.15; }
+.services__header h2 { font-size: var(--font-title-xl-size); font-weight: var(--font-weight-medium); line-height: 1.15; }
 .services__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
 .service-card {
   display: flex;
@@ -494,7 +494,7 @@ import Button from '../components/Button.astro';
   flex: 1;
   min-height: 265px;
 }
-.service-card__content h3 { font-size: var(--font-body-l-size); font-weight: 500; line-height: 1.6; }
+.service-card__content h3 { font-size: var(--font-body-l-size); font-weight: var(--font-weight-medium); line-height: 1.6; }
 .service-card__image { height: 218px; overflow: hidden; background: var(--bg-brand-subtle); position: relative; }
 .service-card__image img { width: 100%; height: 100%; object-fit: cover; }
 .service-card__image::after {
@@ -525,7 +525,7 @@ import Button from '../components/Button.astro';
   flex-direction: column;
   gap: var(--space-12);
 }
-.community h2 { font-size: var(--font-title-xl-size); font-weight: 500; line-height: 1.15; }
+.community h2 { font-size: var(--font-title-xl-size); font-weight: var(--font-weight-medium); line-height: 1.15; }
 .community__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
 .community__card {
   background: var(--bg-surface-bold);
@@ -536,10 +536,10 @@ import Button from '../components/Button.astro';
   flex-direction: column;
   gap: 10px;
 }
-.community__card h3 { font-size: var(--font-body-m-size); font-weight: 500; line-height: 1.7; }
+.community__card h3 { font-size: var(--font-body-m-size); font-weight: var(--font-weight-medium); line-height: 1.7; }
 .community__card p { font-size: var(--font-body-s-size); color: var(--fg-neutral-subtle); line-height: 1.6; }
 
-.label { font-size: var(--font-body-xs-size); font-weight: 500; color: var(--fg-neutral-subtle); letter-spacing: 0.05em; }
+.label { font-size: var(--font-body-xs-size); font-weight: var(--font-weight-medium); color: var(--fg-neutral-subtle); letter-spacing: 0.05em; }
 .territories { display: flex; flex-direction: column; gap: 14px; }
 .territories__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .tag {
@@ -563,7 +563,7 @@ import Button from '../components/Button.astro';
 }
 .person-card__avatar { width: 44px; height: 44px; border-radius: 22px; overflow: hidden; background: var(--bg-brand-bold); flex-shrink: 0; }
 .person-card__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-.person-card__name { font-size: var(--font-body-s-size); font-weight: 500; color: var(--fg-neutral-default); }
+.person-card__name { font-size: var(--font-body-s-size); font-weight: var(--font-weight-medium); color: var(--fg-neutral-default); }
 .person-card__role { font-size: var(--font-body-xs-size); color: var(--fg-neutral-subtle); }
 
 /* IMPACT */
@@ -576,7 +576,7 @@ import Button from '../components/Button.astro';
   gap: var(--space-10);
   flex-wrap: wrap;
 }
-.impact__title { font-size: var(--font-title-xl-size); font-weight: 500; line-height: 1.15; white-space: nowrap; }
+.impact__title { font-size: var(--font-title-xl-size); font-weight: var(--font-weight-medium); line-height: 1.15; white-space: nowrap; }
 .impact__divider { width: 1px; height: 100px; background: rgba(255,255,255,0.4); flex-shrink: 0; }
 .impact__stats { display: flex; flex: 1; gap: var(--space-6); flex-wrap: wrap; }
 .stat { flex: 1 0 100px; display: flex; flex-direction: column; gap: var(--space-1); text-align: center; }
@@ -595,7 +595,7 @@ import Button from '../components/Button.astro';
 }
 .contact__donation { flex: 1 0 300px; display: flex; flex-direction: column; gap: 60px; }
 .contact__donation > div { display: flex; flex-direction: column; gap: var(--space-4); }
-.contact__donation h2 { font-size: var(--font-title-xl-size); font-weight: 500; line-height: 1.15; }
+.contact__donation h2 { font-size: var(--font-title-xl-size); font-weight: var(--font-weight-medium); line-height: 1.15; }
 .transfer-info { font-size: var(--font-body-m-size); line-height: 1.7; display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
 .btn-copy {
   background: none;
@@ -609,7 +609,7 @@ import Button from '../components/Button.astro';
   transition: background 0.15s;
 }
 .btn-copy:hover { background: var(--bg-brand-subtle); }
-.copy-feedback { font-size: var(--font-body-s-size); color: var(--fg-brand); font-weight: 500; }
+.copy-feedback { font-size: var(--font-body-s-size); color: var(--fg-brand); font-weight: var(--font-weight-medium); }
 .quote { display: flex; flex-direction: column; gap: var(--space-2); }
 .quote cite { font-size: var(--font-body-s-size); color: var(--fg-neutral-subtle); font-style: normal; }
 
@@ -623,7 +623,7 @@ import Button from '../components/Button.astro';
   flex-direction: column;
   gap: 28px;
 }
-.contact__form-wrapper h3 { font-size: var(--font-title-xs-size); font-weight: 500; line-height: 1.35; }
+.contact__form-wrapper h3 { font-size: var(--font-title-xs-size); font-weight: var(--font-weight-medium); line-height: 1.35; }
 .contact-form { display: flex; flex-direction: column; gap: var(--space-5); }
 .form-row { display: flex; flex-wrap: wrap; gap: var(--space-5); }
 :global(.contact-form > .field) { flex: none; }
