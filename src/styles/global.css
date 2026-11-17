@@ -102,6 +102,10 @@
   --font-body-xs-size: 12px;
   --font-accent-size:  32px;
 
+  /* ── Font Weight ──────────────────────────────────────────── */
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+
   /* ── Shadows ───────────────────────────────────────────────── */
   --shadow-sm: 0 1px 2px 0 rgba(22, 15, 13, 0.06);
   --shadow-md: 0 4px 12px 0 rgba(22, 15, 13, 0.08);
@@ -114,10 +118,15 @@
 
 @media (max-width: 768px) {
   :root {
-    --margin:         24px;
-    --font-h1-size:   40px;
-    --font-h2-size:   32px;
-    --font-accent-size: 24px;
+    --margin:              24px;
+    --font-h1-size:        40px;
+    --font-h2-size:        32px;
+    --font-h3-size:        24px;
+    --font-h4-size:        20px;
+    --font-h5-size:        18px;
+    --font-h6-size:        16px;
+    --font-body-l-size:    16px;
+    --font-accent-size:    20px;
   }
 }
 
