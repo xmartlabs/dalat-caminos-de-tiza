@@ -631,7 +631,7 @@ import Button from '../components/Button.astro';
 .contact__form-wrapper h3 { font-size: var(--font-title-xs-size); font-weight: var(--font-weight-medium); line-height: 1.35; }
 .contact-form { display: flex; flex-direction: column; gap: var(--space-5); }
 .form-row { display: flex; flex-wrap: wrap; gap: var(--space-5); }
-:global(.contact-form > .field) { flex: none; }
+:global(.form-row > .field) { flex: 1 0 200px; }
 :global(.form-submit) { align-self: flex-start; width: auto; }
 :global(.btn-mp) { align-self: flex-start; max-width: 100%; }
 .mp-icon { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
